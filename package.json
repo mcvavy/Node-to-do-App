@@ -1,0 +1,24 @@
+{
+  "name": "node-to-do",
+  "version": "1.0.0",
+  "description": "A little nodejs to do app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcvavy/Node-to-do-App.git"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "JStemplates"
+  ],
+  "author": "Michael Oyibo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcvavy/Node-to-do-App/issues"
+  },
+  "homepage": "https://github.com/mcvavy/Node-to-do-App#readme"
+}
