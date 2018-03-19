@@ -19,8 +19,10 @@ module.exports = (app) => {
         res.json(data);
     });
 
-    app.delete('/todo', (req, res) => {
-
+    //x.item.replace(/ /g, '-') Replace empty space with with hyphen
+    app.delete('/todo/:item', (req, res) => {
+        data = data.filter(x => x.item.replace(/ /g, '-') !== req.params.item);
+        res.json(data);
     });
 
 };
