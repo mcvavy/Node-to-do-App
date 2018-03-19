@@ -47,8 +47,7 @@ module.exports = (app) => {
             res.json(data);
         });
 
-        // data.push(req.body);
-        // res.json(data);
+rs
     });
 
     //x.item.replace(/ /g, '-') Replace empty space with with hyphen
