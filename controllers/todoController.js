@@ -39,14 +39,30 @@ module.exports = (app) => {
     });
 
     app.post('/todo', urlEncodedParser, (req, res) => {
+
+        //Get data from the view and add it to mongoDB
+        const newTodo = Todo(req.body).save((err, data) => {
+            if(err) throw err;
+
+            res.json(data);
+        });
+
         data.push(req.body);
         res.json(data);
     });
 
     //x.item.replace(/ /g, '-') Replace empty space with with hyphen
     app.delete('/todo/:item', (req, res) => {
-        data = data.filter(x => x.item.replace(/ /g, '-') !== req.params.item);
-        res.json(data);
+        //Delete the requested item from MongoDb
+
+        Todo.find({item: req.params.item.replace(/\-/g, " ")}).remove((err, data) => {
+            if(err) throw err;
+
+            res.json(data);
+        });
+
+        // data = data.filter(x => x.item.replace(/ /g, '-') !== req.params.item);
+        // res.json(data);
     });
 
 };
