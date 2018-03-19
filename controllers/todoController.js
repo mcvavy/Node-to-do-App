@@ -1,4 +1,22 @@
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+//Connecting to the database
+
+mongoose.connect('mongodb://wi13b051:greatss12@ds119059.mlab.com:19059/vavtodo');
+
+
+//Create a schema - This is like a blueprint for the data
+const todoSchema = new mongoose.Schema({
+    item: String
+});
+
+const Todo = mongoose.model('Todo', todoSchema);
+
+// const itemOne = Todo({item: 'Get flowers'}).save(function(err){
+//     if(err) throw err;
+//     console.log('item saved');
+// });
 
 let urlEncodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -11,7 +29,13 @@ let data = [
 module.exports = (app) => {
 
     app.get('/todo', (req, res) => {
-        res.render('todo', { todos: data });
+        //Get data from mongoDB and pass it to the view
+        Todo().find({}, (err, data) => {
+            if (err) throw err;
+
+            res.render('todo', { todos: data });
+        }); // Returns all items in the collections
+
     });
 
     app.post('/todo', urlEncodedParser, (req, res) => {
