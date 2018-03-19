@@ -18,19 +18,19 @@ const Todo = mongoose.model('Todo', todoSchema);
 //     console.log('item saved');
 // });
 
-let urlEncodedParser = bodyParser.urlencoded({ extended: false });
+const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 
-let data = [
-    { item: 'get milk' },
-    { item: 'walk dog' },
-    { item: 'kick some coding ass' }
-];
+// let data = [
+//     { item: 'get milk' },
+//     { item: 'walk dog' },
+//     { item: 'kick some coding ass' }
+// ];
 
 module.exports = (app) => {
 
     app.get('/todo', (req, res) => {
         //Get data from mongoDB and pass it to the view
-        Todo().find({}, (err, data) => {
+        Todo.find({},function(err, data){
             if (err) throw err;
 
             res.render('todo', { todos: data });
@@ -47,8 +47,8 @@ module.exports = (app) => {
             res.json(data);
         });
 
-        data.push(req.body);
-        res.json(data);
+        // data.push(req.body);
+        // res.json(data);
     });
 
     //x.item.replace(/ /g, '-') Replace empty space with with hyphen
